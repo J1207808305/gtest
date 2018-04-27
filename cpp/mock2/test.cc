@@ -2,11 +2,12 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
 
-extern "C" {
-int getInterValue(void);
-}
-
 using namespace testing;
+
+class Test {
+public:
+    int getInterValue(void);
+};
 
 class MockTest {
 public:
@@ -18,7 +19,7 @@ TEST(GtestMocktest, getInterValue)
     MockTest test;
     int value = 10;
     ON_CALL(test, getInterValue()).WillByDefault(Return(value));
-    EXPECT_EQ(10, getInterValue());
+    EXPECT_EQ(10, test.getInterValue());
 }
 
 // Run all the tests that were declared with TEST()
