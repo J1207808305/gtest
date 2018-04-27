@@ -18,7 +18,7 @@ TEST(GtestMocktest, getInterValue)
 {
     MockTest test;
     int value = 10;
-    ON_CALL(test, getInterValue()).WillByDefault(Return(value));
+    EXPECT_CALL(test, getInterValue()).WillOnce(Return(value));
     EXPECT_EQ(10, test.getInterValue());
 }
 
