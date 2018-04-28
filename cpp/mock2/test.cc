@@ -21,9 +21,7 @@ TEST(GtestMocktest, getInterValue)
     MockTest test;
     int value = 10;
     EXPECT_CALL(test, getInterValue()).WillOnce(Return(value));
-    EXPECT_CALL(test, getOneInterValue(10)).WillOnce(Return(value));
     EXPECT_EQ(10, test.getInterValue());
-    EXPECT_EQ(10, test.getOneInterValue(10));
 }
 
 TEST(GtestMockTest, getOneInterValue)
@@ -40,3 +38,11 @@ int main(int argc, char** argv)
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+
+/*
+ *********************************************************************
+ *
+ * 1. 对于测试 C 语言相关的函数，只需要把要测试的函数做一个class的封装即可。
+ *
+ *********************************************************************
+ */
