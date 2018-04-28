@@ -26,6 +26,14 @@ TEST(GtestMocktest, getInterValue)
     EXPECT_EQ(10, test.getOneInterValue(10));
 }
 
+TEST(GtestMockTest, getOneInterValue)
+{
+    MockTest test;
+    int value = 10;
+    EXPECT_CALL(test, getOneInterValue(10)).WillOnce(Return(value));
+    EXPECT_EQ(10, test.getOneInterValue(10));
+}
+
 // Run all the tests that were declared with TEST()
 int main(int argc, char** argv)
 {
