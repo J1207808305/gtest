@@ -53,7 +53,7 @@ void ThreadGetQueue()
 
     while (1) {
         if (que.pop(node))
-            printf("get ID:%d, name:%s", node.id, node.name);
+            printf("get ID:%d, name:%s\n", node.id, node.name);
         else
             boost::thread::sleep(boost::get_system_time() + boost::posix_time::millisec(200));
     }

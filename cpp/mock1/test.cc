@@ -15,6 +15,8 @@ TEST(HelloWorldTest, getMessagetest)
 
     HelloWorld helloworld;
     EXPECT_EQ("helloworld", helloworld.getMessage(&messenger));
+    EXPECT_EQ("helloworld", helloworld.getMessage(&messenger));
+    EXPECT_EQ("helloworld", helloworld.getMessage(&messenger));
 }
 
 // Run all the tests that were declared with TEST()
