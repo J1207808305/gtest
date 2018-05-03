@@ -1,22 +1,20 @@
-#include <boost/bind.hpp>
-#include <boost/lockfree/queue.hpp>
-#include <boost/thread/mutex.hpp>
-#include <boost/threadpool.hpp>
+#include "queue.h"
+#include <stdio.h>
 
 using namespace boost;
 using namespace boost::threadpool;
 using namespace boost::lockfree;
 
-struct TestNode {
-    int id;
-    char name[64];
-    TestNode()
-    {
-        memset(this, 0, sizeof(TestNode));
-    }
-};
+TestQueue::TestQueue()
+    : que(0)
+{
+}
 
-boost::lockfree::queue<struct TestNode, fixed_sized<false> > que(0);
+TestQueue::~TestQueue()
+{
+}
+
+TestQueue myqueue;
 
 int ID = 0;
 void ThreadSetQueue()
@@ -27,7 +25,7 @@ void ThreadSetQueue()
 
     while (1) {
         node.id = ID++;
-        ret = que.push(node);
+        ret = myqueue.que.push(node);
         boost::thread::sleep(boost::get_system_time() + boost::posix_time::millisec(1000));
     }
 }
@@ -41,7 +39,7 @@ void ThreadSetQueue2()
 
     while (1) {
         node.id = ID++;
-        ret = que.push(node);
+        ret = myqueue.que.push(node);
         boost::thread::sleep(boost::get_system_time() + boost::posix_time::millisec(500));
     }
 }
@@ -52,7 +50,7 @@ void ThreadGetQueue()
     struct TestNode node;
 
     while (1) {
-        if (que.pop(node))
+        if (myqueue.que.pop(node))
             printf("get ID:%d, name:%s\n", node.id, node.name);
         else
             boost::thread::sleep(boost::get_system_time() + boost::posix_time::millisec(200));
