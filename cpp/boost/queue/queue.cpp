@@ -14,6 +14,8 @@ TestQueue::~TestQueue()
 {
 }
 
+#if 0
+
 TestQueue myqueue;
 
 int ID = 0;
@@ -23,7 +25,8 @@ void ThreadSetQueue()
     struct TestNode node;
     strcpy(node.name, "hello world");
 
-    while (1) {
+    while (1)
+    {
         node.id = ID++;
         ret = myqueue.que.push(node);
         boost::thread::sleep(boost::get_system_time() + boost::posix_time::millisec(1000));
@@ -37,7 +40,8 @@ void ThreadSetQueue2()
     struct TestNode node;
     strcpy(node.name, "hello johnny");
 
-    while (1) {
+    while (1)
+    {
         node.id = ID++;
         ret = myqueue.que.push(node);
         boost::thread::sleep(boost::get_system_time() + boost::posix_time::millisec(500));
@@ -49,7 +53,8 @@ void ThreadGetQueue()
     bool ret = true;
     struct TestNode node;
 
-    while (1) {
+    while (1)
+    {
         if (myqueue.que.pop(node))
             printf("get ID:%d, name:%s\n", node.id, node.name);
         else
@@ -57,6 +62,7 @@ void ThreadGetQueue()
     }
 }
 
+//#if 0
 int main(int argc, char* atgv[])
 {
     pool QueThread(3);
@@ -66,3 +72,4 @@ int main(int argc, char* atgv[])
     QueThread.wait();
     return 0;
 }
+#endif

@@ -51,6 +51,12 @@ void ThreadGetQueue()
 
 TEST(GtestQueueTest, ReadWrite)
 {
+    pool QueThread(3);
+    QueThread.schedule(&ThreadSetQueue);
+    QueThread.schedule(&ThreadSetQueue2);
+    QueThread.schedule(&ThreadGetQueue);
+    QueThread.wait();
+    EXPECT_EXIT(_exit(1), testing::ExitedWithCode(1), "");
 }
 
 // Run all the tests that were declared with TEST()
