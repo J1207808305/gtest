@@ -4,3 +4,5 @@ clean:
 	rm *.out
 run: all
 	./a.out
+test:
+	g++ queue.cpp test.cc -lboost_thread -lboost_system -pthread -lgtest

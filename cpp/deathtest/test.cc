@@ -10,7 +10,8 @@ void Foo(void)
 
 TEST(FooDeathTest, Demo)
 {
-    ASSERT_DEATH(Foo(), "");
+   // ASSERT_DEATH(Foo(), "");
+   EXPECT_EXIT(_exit(1),testing::ExitedWithCode(1),"error");
 }
 
 // Run all the tests that were declared with TEST()
