@@ -2,7 +2,10 @@
 #include <gtest/gtest.h>
 #include <iostream>
 
-int call_cpp_fun(Cpp* p, int i);
+extern "C" int call_cpp_fun(Cpp* p, int i)
+{
+    return p->fun(i);
+}
 
 TEST(CInvokeTest, cpp)
 {
