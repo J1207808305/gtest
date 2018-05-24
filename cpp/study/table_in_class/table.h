@@ -11,7 +11,8 @@ struct people {
     rename rname;
 };
 
-void re_name(const char name);
+// void re_name(const char name);
+// void my_remame(const char name);
 
 class Table {
 public:
@@ -19,8 +20,11 @@ public:
     ~Table();
 
 private:
+    void re_name(const char name);
+    void my_remame(const char name);
+
     struct people peo[10] = {
-        { 110, '2', 10, &re_name },
+        { 110, '2', 10, re_name },
         { 110, '2', 10, NULL },
         { 110, '2', 10, NULL },
         { 110, '2', 10, NULL },
